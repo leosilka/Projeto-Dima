@@ -1,5 +1,13 @@
-var builder = WebApplication.CreateBuilder(args);
+using Dima.Api.Data;
+using Microsoft.EntityFrameworkCore;
 
+var builder = WebApplication.CreateBuilder(args);
+var cnnStr = builder.Configuration.GetConnectionString("DefaultConnection") ?? string.Empty;
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseSqlServer(cnnStr);
+});
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(x =>
 {
@@ -25,13 +33,13 @@ app.Run();
 
 public class ResponseOk
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public string? Title { get; set; }
 }
 
 public class TransactionRequest
 {
-    public long Id { get; set; }
+    public Guid Id { get; set; }
     public string? Title { get; set; }
     public int Type { get; set; }
     public decimal Amount { get; set; }
@@ -45,7 +53,7 @@ public class Handler
     {
         return new ResponseOk
         {
-            Id = 4,
+            Id = Guid.NewGuid(),
             Title = request.Title
         };
     }
