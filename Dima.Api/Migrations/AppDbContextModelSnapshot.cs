@@ -24,9 +24,11 @@ namespace Dima.Api.Migrations
 
             modelBuilder.Entity("Dima.Core.Control.Models.Category", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -58,9 +60,11 @@ namespace Dima.Api.Migrations
 
             modelBuilder.Entity("Dima.Core.Control.Models.Transaction", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("bigint");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<long>("Id"));
 
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
@@ -68,8 +72,8 @@ namespace Dima.Api.Migrations
                     b.Property<decimal>("Amount")
                         .HasColumnType("MONEY");
 
-                    b.Property<Guid>("CategoryId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<long>("CategoryId")
+                        .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreateAt")
                         .HasColumnType("datetime2");

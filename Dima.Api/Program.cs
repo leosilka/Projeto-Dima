@@ -33,18 +33,18 @@ app.Run();
 
 public class ResponseOk
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
     public string? Title { get; set; }
 }
 
 public class TransactionRequest
 {
-    public Guid Id { get; set; }
+    public long Id { get; set; }
     public string? Title { get; set; }
     public int Type { get; set; }
     public decimal Amount { get; set; }
-    public Guid CategoryId { get; set; }
-    public Guid UserId { get; set; }
+    public long CategoryId { get; set; }
+    public long UserId { get; set; }
 }
 
 public class Handler
@@ -53,7 +53,7 @@ public class Handler
     {
         return new ResponseOk
         {
-            Id = Guid.NewGuid(),
+            Id = 4,
             Title = request.Title
         };
     }

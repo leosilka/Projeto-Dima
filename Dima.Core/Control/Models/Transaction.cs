@@ -10,6 +10,6 @@ public class Transaction : BaseEntity
     public DateTime? PaidOrReceivedAt { get; set; }
     public EtransactionType Type { get; set; } = EtransactionType.Withdraw;
     public decimal Amount { get; set; }
-    public Guid CategoryId { get; set; }
+    public long CategoryId { get; set; }
     public Category? Category { get; set; }
 }
